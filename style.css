@@ -53,3 +53,19 @@ h1 button {
   margin-top: 20px;
   font-size: 15px;
 }
+
+.btn-small {
+  font-size: 12px;
+  padding: 5px 10px;
+}
+
+.btn-ghost {
+  border: 0;
+  background-color: transparent;
+}
+
+.clear {
+  position: absolute;
+  bottom: 30px;
+  left: 30px;
+}
