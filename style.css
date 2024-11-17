@@ -109,10 +109,19 @@ h1 button {
   height: 100%;
   width: 100%;
   position: relative;
+  /* This allows the element to exist on its 3D plane */
+  transform-style: preserve-3d;
+  transition: transform 0.4s ease;
+}
+
+.card.show-answer .inner-card {
+  transform: rotateX(180deg);
 }
 
 .inner-card-front,
 .inner-card-back {
+  /* we need to allow the cards to move flip and be visible */
+  backface-visibility: hidden;
   position: absolute;
   top: 0;
   left: 0;
@@ -123,3 +132,30 @@ h1 button {
   width: 100%;
   background: whitesmoke;
 }
+
+.inner-card-front {
+  transform: rotateX(0deg);
+  z-index: 2;
+}
+
+.inner-card-back {
+  transform: rotateX(180deg);
+}
+
+
+/* Pseudo selector 'after' allows for content to be added after these elements */
+.inner-card-front::after,
+.inner-card-back::after {
+  content: '\f021  Flip';
+  font-family: 'Font Awesome 6 Free';
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-weight: bold;
+  font-size: 16px;
+  color: var(--secondary-color);
+}
+
+
+
+/* Explanation: Unicode allows us to access the "Overwhelming" symbols within the Unicode database. If it is registered within Unicode it can be used by the computer.  */
