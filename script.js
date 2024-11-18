@@ -6,9 +6,9 @@ const nextBtn = document.getElementById('next');
 const currentEl = document.getElementById('current');
 const showBtn = document.getElementById('show');
 const hideBtn = document.getElementById('hide');
-const questionEl = document.getElementById('questions');
+const questionEl = document.getElementById('question');
 const answerEl = document.getElementById('answer');
-const addCardBtn = document.getElementById('add');
+const addCardBtn = document.getElementById('add-card');
 const clearBtn = document.getElementById('clear');
 const addContainer = document.getElementById('add-container');
 
@@ -91,6 +91,13 @@ function getCardsData() {
 
 }
 
+//ADD CARDS TO LOCAL STORAGE
+function setCardsData(cards) {
+  //.local storage requires you to rewrite the entire thing
+  localStorage.setItem('cards', JSON.stringify(cards));
+  window.localStorage.reload;
+}
+
 createAllCards();
 
 
@@ -134,4 +141,33 @@ showBtn.addEventListener('click', () => {
 });
 hideBtn.addEventListener('click', () => {
   addContainer.classList.remove('show');
+})
+
+addCardBtn.addEventListener('click', () => {
+  const question = questionEl.value;
+  const answer = answerEl.value;
+  // console.log(question, answer);
+
+  if(question.trim() && answer.trim()) {
+    const newCard = { question: question, answer: answer };
+
+    createCard(newCard);
+
+    questionEl.value = '';
+    answerEl.value   = '';
+
+    addContainer.classList.remove('show');
+
+    cardsData.push(newCard); //The array is within the array cardsData returns
+    setCardsData(cardsData);
+  }
+});
+
+//ADD A DELET BUTTON HERE!
+
+//CLEAR ALL CARDS
+clearBtn.addEventListener('click', () => {
+  localStorage.clear();
+  cardsContainer.innerHTML = '';
+  window.location.reload();
 })
