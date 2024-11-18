@@ -1,7 +1,7 @@
 
 //DOM Selectors
 const cardsContainer = document.getElementById('cards-container');
-const prevBtn = document.getElementById('prev');
+const prevBtn = document.getElementById('previous');
 const nextBtn = document.getElementById('next');
 const currentEl = document.getElementById('current');
 const showBtn = document.getElementById('show');
@@ -13,7 +13,7 @@ const clearBtn = document.getElementById('clear');
 const addContainer = document.getElementById('add-container');
 
 //Keep Track of Current Cards
-let curentActiveCard = 0;
+let currentActiveCard = 0;
 
 //Store DOM Cards
 const cardsEl = [];
@@ -70,6 +70,47 @@ function createCard(data, index) {
 
   cardsContainer.appendChild(card);
 
+  updateCurrentText();
+
 }
 
+//show the number of cards
+// Shows the number of cards available and the card number you are on.
+function updateCurrentText() {
+  currentEl.innerText = `${currentActiveCard + 1} / ${cardsEl.length}`;
+}
+
+
 createAllCards();
+
+
+//EVENT LISTENERS
+nextBtn.addEventListener('click', () => {
+  cardsEl[currentActiveCard].className = 'card left';
+  // className vs classList... Name overwrites what is there. List adds to what is already there. This is an important distinction.
+
+  //GET NEW CARD INDEX
+  currentActiveCard = currentActiveCard + 1;
+
+  if (currentActiveCard > cardsEl.length - 1) {
+    currentActiveCard = cardsEl.length - 1;
+  }
+
+  cardsEl[currentActiveCard].className = 'card active';
+
+  updateCurrentText();
+});
+
+prevBtn.addEventListener('click', () => {
+  cardsEl[currentActiveCard].className = 'card right';
+
+  currentActiveCard = currentActiveCard - 1;
+
+  if (currentActiveCard < 0) {
+    currentActiveCard = 0;
+  }
+
+  cardsEl[currentActiveCard].className = 'card active';
+
+  updateCurrentText();
+});

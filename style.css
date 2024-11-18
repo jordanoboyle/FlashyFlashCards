@@ -100,7 +100,10 @@ h1 button {
 
 .card.left {
   transform: translateX(-50%) rotateY(10deg);
+}
 
+.card.right {
+  transform: translateX(50%) rotateY(-10deg);
 }
 
 .inner-card {
