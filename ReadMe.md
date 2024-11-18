@@ -1,3 +1,21 @@
+# Flash Card Study Tool
+Currently a simple application that allows for the creation of flashcards or a question/answer type game. The application has simple functionality. You can create flashcards and store them in local storage or clear themselves out as well. 
+
+## Project Overview
+   This application does not use a third party API currently, thought that may change in the future. Fire up the application with the instructions below and make as many flash cards as you like. I intend to add mobile media queries to make sure it works on small devices as well. 
+
+## Features
+   - You can create flash cards
+   - Cards are stored in local storage. 
+   - Little CSS animations for card transitions for interactive feel.
+   - Clear out all the cards as needed.
+
+## Future
+   - I intend to add a delete function for the individual cards. 
+   - Would also like to add customization of card colors.
+   - Add possible custom fonts
+   - Three stage cards that show how you get to a challenges solution. 
+
 ## Getting Started
 
 ### Prerequisites
