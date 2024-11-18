@@ -19,20 +19,22 @@ let currentActiveCard = 0;
 const cardsEl = [];
 
 //Store the card Data ( Eventually from local storage)
-const cardsData = [
-  {
-    question: "Who made the game Last of Us?",
-    answer: "Naughty Dog Studios"
-  },
-  {
-    question: "Who was the brainchild of Kirby's Dreamland?",
-    answer: "Masahiro Sakurai"
-  },
-  {
-    question: "What game was hunted down by Artari and burried in the NM desert?",
-    answer: "ET"
-  }
-];
+const cardsData = getCardsData();
+//PROOF OF CONCEPT DATA BELOW
+// const cardsData = [
+//   {
+//     question: "Who made the game Last of Us?",
+//     answer: "Naughty Dog Studios"
+//   },
+//   {
+//     question: "Who was the brainchild of Kirby's Dreamland?",
+//     answer: "Masahiro Sakurai"
+//   },
+//   {
+//     question: "What game was hunted down by Artari and burried in the NM desert?",
+//     answer: "ET"
+//   }
+// ];
 
 //Create All Cards
 function createAllCards() {
@@ -80,6 +82,14 @@ function updateCurrentText() {
   currentEl.innerText = `${currentActiveCard + 1} / ${cardsEl.length}`;
 }
 
+//GET CARDS FROM LOCAL STORAGE
+function getCardsData() {
+  const cards = JSON.parse(localStorage.getItem('cards'));
+  //Local storage only stores strings, so we have to put them in there like that and pull them out like that as well (parse back into array). 
+  return cards === null ? [] : cards;
+  //ternairy operator is shorthand shift statement.
+
+}
 
 createAllCards();
 
@@ -95,6 +105,7 @@ nextBtn.addEventListener('click', () => {
   if (currentActiveCard > cardsEl.length - 1) {
     currentActiveCard = cardsEl.length - 1;
   }
+  //This prevents the cards from going further than the end.
 
   cardsEl[currentActiveCard].className = 'card active';
 
@@ -109,8 +120,18 @@ prevBtn.addEventListener('click', () => {
   if (currentActiveCard < 0) {
     currentActiveCard = 0;
   }
+  //This prevents from going past 0 index.
 
   cardsEl[currentActiveCard].className = 'card active';
 
   updateCurrentText();
 });
+
+
+//Show add container
+showBtn.addEventListener('click', () => {
+  addContainer.classList.add('show');
+});
+hideBtn.addEventListener('click', () => {
+  addContainer.classList.remove('show');
+})

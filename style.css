@@ -39,7 +39,7 @@ h1 button {
   position: absolute;
   right: 0;
   transform: translate(110%, -50%);
-  z-index: 2;
+  /* z-index: 2; */
   /* Always on top of everything. Think of the screen like a flat surface. */
 }
 
